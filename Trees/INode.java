@@ -15,5 +15,4 @@ public interface INode<K extends Comparable<K>>{
     void setParent(INode<K> parent);
     INode<K> getParent();
 
-
 }
