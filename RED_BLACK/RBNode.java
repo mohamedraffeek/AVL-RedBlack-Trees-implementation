@@ -2,13 +2,13 @@ package RED_BLACK;
 
 public class RBNode<K extends Comparable<K>, V> implements IRBNode {
     K key;
-    int color;
+    char color;
     IRBNode parent;
     IRBNode right;
     IRBNode left;
 
 
-    public RBNode(K key, int color){
+    public RBNode(K key, char color){
      this.key = key;
      this.color = color;
     }
@@ -54,12 +54,12 @@ public class RBNode<K extends Comparable<K>, V> implements IRBNode {
         return null;
     }
 
-    @Override
+
     public int getColor() {
         return 0;
     }
 
-    @Override
+
     public void setColor(int color) {
 
     }

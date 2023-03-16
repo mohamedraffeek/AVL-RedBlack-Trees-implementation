@@ -2,9 +2,9 @@ package RED_BLACK;
 
 public class RedBlack implements IRedBlack {
 
-    IRBNode root;
+    RBNode root;
     public RedBlack(){
-        this.root = new RBNode(null, IRBNode.black);
+        this.root = new RBNode(null, 'B');
     }
 
     int size = 0;
@@ -12,7 +12,7 @@ public class RedBlack implements IRedBlack {
     @Override
     public void insert(Comparable key) {
 
-        RBNode node = new RBNode(key,IRBNode.black );
+        RBNode node = new RBNode(key,'B' );
 
         if(key == null){
             throw new RuntimeException("No key");
@@ -22,7 +22,7 @@ public class RedBlack implements IRedBlack {
         /* Insert to empty tree*/
         if(size == 0){
             this.root = node;
-            this.root.setColor(IRBNode.black);
+            this.root.setColor('B');
         }
 
         /*

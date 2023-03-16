@@ -2,8 +2,6 @@ package RED_BLACK;
 
 public interface IRBNode<K extends Comparable<K>>{
 
-    static final int black = 0;
-    static final int red  = 1;
 
     K getKey();
     void setKey(K key);
@@ -17,7 +15,5 @@ public interface IRBNode<K extends Comparable<K>>{
     void setParent(IRBNode<K> parent);
     IRBNode<K> getParent();
 
-    int getColor();
-    void setColor(int color);
 
 }
