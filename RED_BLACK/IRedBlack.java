@@ -8,7 +8,7 @@ public interface IRedBlack<K extends Comparable<K>, V> {
 
     boolean delete();
 
-    public IRBNode search(IRBNode root, K key);
+    public INode search(INode root, K key);
 
     int getSize();
 

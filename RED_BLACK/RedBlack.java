@@ -38,7 +38,7 @@ public class RedBlack implements IRedBlack {
     }
 
     @Override
-    public IRBNode search(IRBNode root, Comparable key) {
+    public INode search(INode root, Comparable key) {
         if(root==null || root.getKey().compareTo(key) == 0){
             return root;
         }  if (root.getKey().compareTo(key) > 0) {

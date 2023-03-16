@@ -1,11 +1,11 @@
 package RED_BLACK;
 
-public class RBNode<K extends Comparable<K>, V> implements IRBNode {
+public class RBNode<K extends Comparable<K>, V> implements INode {
     K key;
     char color;
-    IRBNode parent;
-    IRBNode right;
-    IRBNode left;
+    INode parent;
+    INode right;
+    INode left;
 
 
     public RBNode(K key, char color){
@@ -25,32 +25,32 @@ public class RBNode<K extends Comparable<K>, V> implements IRBNode {
 
 
     @Override
-    public void setRight(IRBNode right) {
+    public void setRight(INode right) {
 
     }
 
     @Override
-    public IRBNode getRight() {
+    public INode getRight() {
         return null;
     }
 
     @Override
-    public void setLeft(IRBNode left) {
+    public void setLeft(INode left) {
 
     }
 
     @Override
-    public IRBNode getLeft() {
+    public INode getLeft() {
         return null;
     }
 
     @Override
-    public void setParent(IRBNode parent) {
+    public void setParent(INode parent) {
 
     }
 
     @Override
-    public IRBNode getParent() {
+    public INode getParent() {
         return null;
     }
 
