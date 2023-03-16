@@ -1,22 +1,22 @@
 package Trees;
 
-public class RedBlack implements ITree {
+public class RedBlack<K extends Comparable<K>> implements ITree<K> {
 
-    RBNode root;
+    RBNode<K> root;
 
     /*
     root is black by default
      */
     public RedBlack(){
-        this.root = new RBNode(null, 'B');
+        this.root = new RBNode<>(null, 'B', null, null, null);
     }
 
     int size = 0;
 
     @Override
-    public void insert(Comparable key) {
+    public void insert(K key) {
 
-        RBNode node = new RBNode(key,'B' );
+        RBNode<K> node = new RBNode<>(key,'R',null,null,null );
 
         if(key == null){
             throw new RuntimeException("No key");
@@ -25,14 +25,157 @@ public class RedBlack implements ITree {
         /* Insert to empty tree*/
         if(size == 0){
             this.root = node;
-            this.root.setColor('B');
+            node.setColor('B');
+            node.setRight(new RBNode<>(null, 'B', null, null, null));
+            node.setLeft(new RBNode<>(null, 'B', null, null, null));
+            size++;
+            return;
         }
 
+        //n to find right place in the tree
+        //node has the key value
+        RBNode<K> parent = null;
+        RBNode<K> current = this.root;
+        while(!current.isNull()){
+            parent = current;
+            if(current.getKey().compareTo(key) < 0){
+                current = current.getRight();
+            }else{
+                current = current.getLeft();
+            }
+        }
+
+        assert parent != null;
+
+        node.setParent(parent);
+
+        if(parent.getKey().compareTo(key) > 0){
+            parent.setLeft(node);
+        }else {
+            parent.setRight(node);
+        }
+
+
+        //set nil children to new node
+        node.setLeft(new RBNode<K>(null, 'B', null, null, node));
+
+        fixThisTree(node);
+
         /*
-        * increment size by one after each SUCCESSFUL insertion
-        * */
+         * increment size by one after each SUCCESSFUL insertion
+         * getting size is O(1)
+         * */
+        size++;
+
     }
 
+    void fixThisTree(RBNode<K> node){
+
+        if(node.getParent().getColor() == 'B'){
+            return;
+        }
+        /*
+        recursion from node to root
+         */
+        while(!node.getParent().isNull() && node.getParent().getColor() == 'R'){
+
+                RBNode<K> gp = node.getParent().getParent();
+                RBNode<K> u;
+
+                //CASE 1 : parent is left child of grandparent
+                if(node.getParent().equals(gp.getLeft())) {
+                    u = gp.getRight();
+                    if (!u.isNull() && u.getColor() == 'R') {
+                        node.getParent().setColor('B');
+                        u.setColor('B');
+                        if(!gp.equals(root)){
+                            gp.setColor('R');
+                            //recursive
+                            node = gp;
+                        }
+                    } else{
+                        if(node.equals(node.getParent().getRight())){
+                            leftRotate(node.getParent());
+                            node = node.getLeft();
+                        }
+                        node.getParent().setColor('B');
+                        gp.setColor('R');
+                        rightRotate(node.getParent().getParent());
+                    }
+                }
+
+                //CASE 2: parent is right child of grandparent (MIRROR CASE)
+                else{
+                    u = gp.getLeft();
+                    if (u.getColor() == 'R') {
+                        node.getParent().setColor('B');
+                        u.setColor('B');
+                        if (!gp.equals(root)) {
+                            gp.setColor('R');
+                            //recursive
+                            node = gp;
+                        }
+                    } else {
+                        if(node.equals(node.getParent().getLeft())){
+                            rightRotate(node.getParent());
+                            node = node.getRight();
+                        }
+                        node.getParent().setColor('B');
+                        node.getParent().getParent().setColor('R');
+                        leftRotate(node.getParent().getParent());
+                    }
+
+                }
+
+
+        }
+        root.setColor('B');
+    }
+
+    void leftRotate(RBNode<K> node){
+        RBNode<K> temp = node.getRight();
+        node.setRight(temp.getRight());
+
+        if(!temp.getLeft().isNull()){
+            temp.getLeft().setParent(node);
+        }
+
+        temp.setParent(node.getParent());
+
+        if(node.getParent()==null){
+            this.root = temp;
+        } else if (node.equals(node.getParent().getLeft())){
+            node.getParent().setLeft(temp);
+        } else{
+            node.getParent().setRight(temp);
+        }
+        temp.setLeft(node);
+        node.setParent(temp);
+    }
+
+    void rightRotate(RBNode<K> node){
+
+        RBNode<K> temp = node.getLeft();
+
+        node.setLeft(temp.getRight());
+
+        if(!temp.getRight().isNull()){
+            temp.getRight().setParent(node);
+        }
+
+        temp.setParent(node.getParent());
+
+        if(node.getParent().isNull()){
+            this.root = temp;
+        } else if (node.equals(node.getParent().getLeft())) {
+            node.getParent().setLeft(temp);
+        } else{
+            node.getParent().setRight(temp);
+        }
+
+        temp.setRight(node);
+        node.setParent(temp);
+    }
 
 
     @Override
@@ -41,7 +184,7 @@ public class RedBlack implements ITree {
     }
 
     @Override
-    public INode search(INode root, Comparable key) {
+    public RBNode<K> search(RBNode<K> root, K key) {
         if(root==null || root.getKey().compareTo(key) == 0){
             return root;
         }  if (root.getKey().compareTo(key) > 0) {
