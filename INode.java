@@ -21,5 +21,4 @@ public interface INode <K extends Comparable<K>, V>{
     int getColor();
     void setColor(int color);
 
-
 }

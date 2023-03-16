@@ -1,7 +1,6 @@
 /*generic interface*/
 public interface IRedBlack<K extends Comparable<K>, V> {
 
-
     void insert();
 
     boolean delete();

@@ -7,7 +7,6 @@ public class node <K extends Comparable<K>, V> implements INode {
     INode left;
 
 
-
     public node(K key, V value , int color, INode parent, INode right, INode left, int size){
      this.key = key;
      this.value = value;
