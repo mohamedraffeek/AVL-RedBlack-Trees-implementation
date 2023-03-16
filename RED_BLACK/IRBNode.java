@@ -1,6 +1,6 @@
 package RED_BLACK;
 
-public interface IRBNode<K extends Comparable<K>, V>{
+public interface IRBNode<K extends Comparable<K>>{
 
     static final int black = 0;
     static final int red  = 1;
@@ -8,17 +8,14 @@ public interface IRBNode<K extends Comparable<K>, V>{
     K getKey();
     void setKey(K key);
 
-    V getValue();
-    void setValue(V value);
+    void setRight(IRBNode<K> right);
+    IRBNode<K> getRight();
 
-    void setRight(IRBNode<K, V> right);
-    IRBNode<K, V> getRight();
+    void setLeft(IRBNode<K> left);
+    IRBNode<K> getLeft();
 
-    void setLeft(IRBNode<K, V> left);
-    IRBNode<K, V> getLeft();
-
-    void setParent(IRBNode<K, V> parent);
-    IRBNode<K, V> getParent();
+    void setParent(IRBNode<K> parent);
+    IRBNode<K> getParent();
 
     int getColor();
     void setColor(int color);
