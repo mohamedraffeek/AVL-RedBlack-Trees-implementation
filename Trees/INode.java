@@ -1,4 +1,4 @@
-package RED_BLACK;
+package Trees;
 
 public interface INode<K extends Comparable<K>>{
 

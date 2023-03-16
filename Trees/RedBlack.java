@@ -1,8 +1,12 @@
-package RED_BLACK;
+package Trees;
 
-public class RedBlack implements IRedBlack {
+public class RedBlack implements ITree {
 
     RBNode root;
+
+    /*
+    root is black by default
+     */
     public RedBlack(){
         this.root = new RBNode(null, 'B');
     }
@@ -17,7 +21,6 @@ public class RedBlack implements IRedBlack {
         if(key == null){
             throw new RuntimeException("No key");
         }
-
 
         /* Insert to empty tree*/
         if(size == 0){

@@ -1,4 +1,4 @@
-package RED_BLACK;
+package Trees;
 
 public class RBNode<K extends Comparable<K>, V> implements INode {
     K key;
