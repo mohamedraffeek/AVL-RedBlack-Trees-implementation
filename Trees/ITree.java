@@ -1,14 +1,14 @@
 package Trees;
 
 /*generic interface*/
-public interface ITree<K extends Comparable<K>, V> {
+public interface ITree<K extends Comparable<K>> {
 
 
-    void insert(Comparable key);
+    String insert(K key);
 
-    boolean delete();
+    String delete(K key);
 
-    public INode search(INode root, K key);
+    public RBNode<K> search(RBNode<K> root, K key);
 
     int getSize();
 
