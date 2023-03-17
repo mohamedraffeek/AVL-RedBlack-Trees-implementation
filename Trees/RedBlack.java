@@ -14,7 +14,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
     int size = 0;
 
     @Override
-    public void insert(K key) {
+    public String insert(K key) {
 
         RBNode<K> node = new RBNode<>(key,'R',null,null,null );
 
@@ -29,7 +29,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             node.setRight(new RBNode<>(null, 'B', null, null, null));
             node.setLeft(new RBNode<>(null, 'B', null, null, null));
             size++;
-            return;
+            return "Inserted to empty tree";
         }
 
         //n to find right place in the tree
@@ -66,6 +66,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
          * getting size is O(1)
          * */
         size++;
+        return "Inserted Successfully";
 
     }
 
@@ -179,8 +180,20 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
 
 
     @Override
-    public boolean delete() {
-        return false;
+    public String delete(K key) {
+
+        if(key == null){
+            throw new RuntimeException("No key");
+        }
+
+        RBNode<K> node = this.search(this.root, key);
+        deleteThis(node);
+
+        return "Deleted Successfully";
+    }
+
+    void deleteThis(RBNode<K> node){
+
     }
 
     @Override
@@ -204,6 +217,18 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
 
     @Override
     public int getHeight() {
-        return 0;
+        return height(root);
+    }
+
+    //O(n)
+    private int height(RBNode<K> node){
+        //base case
+        if(node.isNull()){
+            return 0;
+        } else{
+            int leftHeight = height(node.getLeft());
+            int rightHeight = height(node.getRight());
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
     }
 }
