@@ -133,7 +133,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
 
     void leftRotate(RBNode<K> node) {
         RBNode<K> temp = node.getRight();
-        node.setRight(temp.getRight());
+        node.setRight(temp.getLeft());
 
         if (!temp.getLeft().isNull()) {
             temp.getLeft().setParent(node);
@@ -238,5 +238,24 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             int rightHeight = height(node.getRight());
             return Math.max(leftHeight, rightHeight) + 1;
         }
+    }
+
+    public void printInorder(RBNode<K> node) {
+        if (node == null || node.isNull())
+            return;
+        printInorder(node.getLeft());
+        if (node == root)
+            System.out.print("*");
+        System.out.print(node.getKey() + " " + node.getColor() + " ");
+        printInorder(node.getRight());
+    }
+
+    // overload
+    public void printInorder() {
+        if (size == 0) {
+            System.out.println("Empty tree");
+        }
+        printInorder(root);
+        System.out.println();
     }
 }
