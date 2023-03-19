@@ -15,7 +15,7 @@ public class Dictionary {
     }
 
     public String search(String key) {
-        return dicRoot.insert(key);
+        return dicRoot.search(key);
     }
 
     public String insert(String key) {
@@ -31,7 +31,7 @@ public class Dictionary {
     }
 
     public String getSize() {
-        return "Dictionary height is " + dicRoot.getSize();
+        return "Dictionary size is " + dicRoot.getSize();
     }
 
     public String batchInsert(String path) {
