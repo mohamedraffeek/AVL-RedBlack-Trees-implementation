@@ -15,7 +15,7 @@ public class AVLTree<K extends Comparable<K>> implements ITree<K> {
         System.out.println("Tree created and value " + value + " is added");
     }
 
-    public AVLTree(){
+    public AVLTree() {
         root = null;
     }
 
@@ -34,11 +34,11 @@ public class AVLTree<K extends Comparable<K>> implements ITree<K> {
     }
 
     @Override
-    public String getHeight() {
+    public int getHeight() {
         if (root != null)
-            return "The tree height is " + root.getHeight();
+            return root.getHeight();
         else
-            return "The tree height is 0";
+            return 0;
     }
 
     // start insert
@@ -159,15 +159,15 @@ public class AVLTree<K extends Comparable<K>> implements ITree<K> {
         if (root == null)
             return root; // nothing to delete
         int found = root.getKey().compareTo(value); // found: -ve if key < value, +ve if key > value, 0 if key = value
-        if (found < 0){
+        if (found < 0) {
             root.setRight(deleteRecursion(root.getRight(), value, deletionDone));
-            if(root.getRight() != null)
+            if (root.getRight() != null)
                 root.getRight().setParent(root);
-        }else if (found > 0){
+        } else if (found > 0) {
             root.setLeft(deleteRecursion(root.getLeft(), value, deletionDone));
-            if(root.getLeft() != null)
+            if (root.getLeft() != null)
                 root.getLeft().setParent(root);
-        }else if (found == 0 && size == 1) { // tree has only one node
+        } else if (found == 0 && size == 1) { // tree has only one node
             size = 0;
             lastDeletedNode = root;
             this.root = null;
@@ -207,7 +207,7 @@ public class AVLTree<K extends Comparable<K>> implements ITree<K> {
                 deletionDone = true;
                 root.setKey(temp.getKey()); // swap the deleted key with the successor's key
                 root.setRight(deleteRecursion(root.getRight(), temp.getKey(), deletionDone)); // delete the successor
-                if(root.getRight() != null)
+                if (root.getRight() != null)
                     root.getRight().setParent(root);
             }
         }
