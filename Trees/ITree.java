@@ -7,7 +7,7 @@ public interface ITree<K extends Comparable<K>> {
 
     String delete(K key);
 
-    // public RBNode<K> search(RBNode<K> root, K key);
+    String search(K key);
 
     int getSize();
 

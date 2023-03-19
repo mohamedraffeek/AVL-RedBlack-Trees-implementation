@@ -6,7 +6,19 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
-    RedBlack<String> rb = new RedBlack<String>();
+    Dictionary d = new Dictionary("avl");
+    System.out.println(d.insert("ahmed"));
+    System.out.println(d.insert("ahmed"));
+    System.out.println(d.insert("abdo"));
+    System.out.println(d.delete("rafeek"));
+    System.out.println(d.insert("rafeek"));
+    System.out.println(d.search("magdy"));
+    System.out.println(d.insert("hassan"));
+    System.out.println(d.getHeight());
+    System.out.println(d.getSize());
+    System.out.println(d.batchInsert("E:/level2/DS2/test.txt"));
+    System.out.println(d.batchDelete("E:/level2/DS2/test.txt"));
+    // RedBlack<String> rb = new RedBlack<String>();
     // System.out.println(rb.insert(1));
     // System.out.println(rb.insert(2));
     // System.out.println(rb.insert(3));
@@ -17,22 +29,22 @@ public class Main {
     // System.out.println(rb.getHeight());
     // System.out.println(rb.search(200));
     // System.out.println(rb.search(19));
-    try {
-      File myObj = new File("E:/level2/DS2/test.txt");
-      Scanner myReader = new Scanner(myObj);
-      while (myReader.hasNextLine()) {
-        String data = myReader.nextLine();
-        data = data.toLowerCase();
-        rb.insert(data);
-      }
-      myReader.close();
-    } catch (FileNotFoundException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
-    System.out.println(rb.search("z"));
-    System.out.println(rb.search("a"));
-    rb.printInorder();
+    // try {
+    // File myObj = new File("E:/level2/DS2/test.txt");
+    // Scanner myReader = new Scanner(myObj);
+    // while (myReader.hasNextLine()) {
+    // String data = myReader.nextLine();
+    // data = data.toLowerCase();
+    // rb.insert(data);
+    // }
+    // myReader.close();
+    // } catch (FileNotFoundException e) {
+    // System.out.println("An error occurred.");
+    // e.printStackTrace();
+    // }
+    // System.out.println(rb.search("z"));
+    // System.out.println(rb.search("a"));
+    // rb.printInorder();
     // System.out.println(rb.getHeight());
     // System.out.println(rb.search(rb.root, 10));
     // get height
