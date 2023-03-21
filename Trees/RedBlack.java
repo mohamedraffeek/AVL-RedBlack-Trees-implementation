@@ -40,7 +40,8 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             parent = current;
 
             if (current.getKey().compareTo(key) == 0) {
-                System.out.println("key already inserted");
+                return "key already inserted";
+                
             }else if(current.getKey().compareTo(key) < 0){
                         current = current.getRight();
             } else {
