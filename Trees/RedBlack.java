@@ -216,10 +216,10 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         RBNode<K> x,y;// = findSucc(v.left);
         y = node;
         char deletedNodeColor = node.color;
-        if(node.left.key == null){//node has 1 right child
+        if(node.left.key == null){
             x = node.right;
             changePosition(node,x);
-        }else if(node.right.key == null){//node has 1 left child
+        }else if(node.right.key == null){
             x = node.left;
             changePosition(node,x);
         }else{//node has 2 children
@@ -344,6 +344,11 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             return Math.max(leftHeight, rightHeight) + 1;
         }
     }
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
     public void printInorder(RBNode<K> node) {
         if (node == null || node.getKey() == null)
             return;
@@ -353,7 +358,6 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         System.out.print(node.getKey() + " " + node.getColor() + " ");
         printInorder(node.getRight());
     }
-
     // overload
     public void printInorder() {
         if (size == 0) {

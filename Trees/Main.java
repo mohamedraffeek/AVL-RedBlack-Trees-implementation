@@ -6,6 +6,10 @@ public class Main {
   
   public static final String ANSI_RESET = "\u001B[0m", BLACK = "\u001B[30m", RED = "\u001B[31m", GREEN = "\u001B[32m", YELLOW = "\u001B[33m", BLUE = "\u001B[34m", PURPLE = "\u001B[35m", CYAN = "\u001B[36m";
   public static void main(String[] args) {
+<<<<<<< Updated upstream
+=======
+/*
+>>>>>>> Stashed changes
     util.clearScreen();
 
     Dictionary d = null;
@@ -79,7 +83,7 @@ public class Main {
         default:
           break;
       }
-    }
+    }*/
 
     // Dictionary d = new Dictionary("avl");
     // System.out.println(d.insert("ahmed"));
@@ -121,7 +125,7 @@ public class Main {
     // System.out.println(rb.search("a"));
     // rb.printInorder();
     RedBlack<Integer> rb = new RedBlack<Integer>();
-    System.out.println(rb.insert(10));
+    /*System.out.println(rb.insert(10));
     System.out.println(rb.insert(15));
     System.out.println(rb.insert(20));
     System.out.println(rb.insert(25));
@@ -139,7 +143,21 @@ public class Main {
     System.out.println(rb.insert(26));
 
     System.out.println(rb.delete(50));
-    System.out.println(rb.delete(45));
+    System.out.println(rb.delete(45));*/
+    System.out.println(rb.insert(6));
+    System.out.println(rb.insert(5));
+    System.out.println(rb.insert(4));
+    System.out.println(rb.insert(3));
+    System.out.println(rb.insert(2));
+    System.out.println(rb.insert(1));
+    System.out.println(rb.delete(6));
+
+    /*System.out.println(rb.insert(8));
+    System.out.println(rb.delete(25));
+   /* System.out.println(rb.insert(8));
+    System.out.println(rb.delete(25));*/
+    //System.out.println(rb.insert(1));
+    //System.out.println(rb.delete(6));
    // rb.delete(80);
     //rb.printInorder();
     //rb.printInorder();
