@@ -57,7 +57,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
 
         // set nil children to new node
         node.setLeft(new RBNode<K>(null, 'B', null, null, node));
-
+        node.setRight(new RBNode<K>(null, 'B', null, null, node));
         fixThisTree(node);
 
         /*
@@ -65,7 +65,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
          * getting size is O(1)
          */
         size++;
-        return "Inserted Successfully";
+        return "Inserted Successfully " + node.color;
 
     }
 
@@ -185,15 +185,116 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         }
 
         RBNode<K> node = this.search2(this.root, key);
+        if(node == null){
+            return "item not found";
+        }
         deleteThis(node);
-
+        size--;
         return "Deleted Successfully";
     }
-
-    void deleteThis(RBNode<K> node) {
-
+    private void changePosition(RBNode<K> u, RBNode<K> v) {
+        if(u.parent == null){
+            root = v;
+        }else if(u == u.parent.left){
+            u.parent.left = v;
+        }else{
+            u.parent.right = v;
+        }
+        v.parent = u.parent;
     }
+    public RBNode<K> findSucc(RBNode<K> node){
+        while(node.left!= null && node.getLeft().key != null){
+            node = node.left;
+        }
+        return node;
+    }
+    void deleteThis(RBNode<K> node) {
+        RBNode<K> x,y;// = findSucc(v.left);
+        y = node;
+        char deletedNodeColor = node.color;
+        if(node.left.key == null){//node has 1 right child
+            x = node.right;
+            changePosition(node,x);
+        }else if(node.right.key == null){//node has 1 left child
+            x = node.left;
+            changePosition(node,x);
+        }else{//node has 2 children
+            y = findSucc(node.right);
+            deletedNodeColor = y.color;
+            x = y.right;
+            if(node == y.parent){
+                x.parent = y;
+            }else{
+                changePosition(y,x);
+                y.right = node.right;
+                y.right.parent = y;
+            }
+            changePosition(node, y);
+            y.left = node.left;
+            y.left.parent = y;
+            y.color = node.color;
+        }
+        if (deletedNodeColor == 'B') {
+            fixDelete(x);
+        }
+    }
+    private void fixDelete(RBNode<K> x) {
+        RBNode<K> s;
+        while (x != root && x.color == 'B') {
+            if (x == x.parent.left) {
+                s = x.parent.right;
+                if (s.color == 'R') {
+                    s.color = 'B';
+                    x.parent.color = 'R';
+                    leftRotate(x.parent);
+                    s = x.parent.right;
+                }
+                if (s.left.color == 'B' && s.right.color == 'B') {
+                    s.color = 'R';
+                    x = x.parent;
+                } else {
+                    if (s.right.color == 'B') {
+                        s.left.color = 'B';
+                        s.color = 'R';
+                        rightRotate(s);
+                        s = x.parent.right;
+                    }
 
+                    s.color = x.parent.color;
+                    x.parent.color = 'B';
+                    s.right.color = 'B';
+                    leftRotate(x.parent);
+                    x = root;
+                }
+            } else {
+                s = x.parent.left;
+                if (s.color == 'R') {
+                    s.color = 'B';
+                    x.parent.color = 'R';
+                    rightRotate(x.parent);
+                    s = x.parent.left;
+                }
+
+                if (s.right.color == 'B' && s.right.color == 'B') {
+                    s.color = 'R';
+                    x = x.parent;
+                } else {
+                    if (s.left.color == 'B') {
+                        s.right.color = 'B';
+                        s.color = 'R';
+                        leftRotate(s);
+                        s = x.parent.left;
+                    }
+                    s.color = x.parent.color;
+                    x.parent.color = 'B';
+                    s.left.color = 'B';
+                    rightRotate(x.parent);
+                    x = root;
+                }
+            }
+        }
+        x.color = 'B';
+    }
     // @Override
     public String search(K key) {
         if (search2(root, key) != null)
@@ -239,18 +340,29 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             return Math.max(leftHeight, rightHeight) + 1;
         }
     }
+<<<<<<< Updated upstream
 
     public void printInorder(RBNode<K> node) {
         if (node == null || node.isNull())
+=======
+    public void printInorder(RBNode<K> node) {
+        if (node == null || node.getKey() == null)
+>>>>>>> Stashed changes
             return;
         printInorder(node.getLeft());
         if (node == root)
             System.out.print("*");
+<<<<<<< Updated upstream
         System.out.print(node.getKey() + " " + node.getColor() + " ");
         printInorder(node.getRight());
     }
 
     // overload
+=======
+        System.out.print(node.getKey() +" " + node.getColor() + " ");
+        printInorder(node.getRight());
+    }
+>>>>>>> Stashed changes
     public void printInorder() {
         if (size == 0) {
             System.out.println("Empty tree");
@@ -258,4 +370,8 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         printInorder(root);
         System.out.println();
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
