@@ -38,8 +38,11 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         RBNode<K> current = this.root;
         while (current != null && !current.isNull()) {
             parent = current;
-            if (current.getKey().compareTo(key) < 0) {
-                current = current.getRight();
+
+            if (current.getKey().compareTo(key) == 0) {
+                System.out.println("key already inserted");
+            }else if(current.getKey().compareTo(key) < 0){
+                        current = current.getRight();
             } else {
                 current = current.getLeft();
             }
@@ -298,9 +301,9 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
     // @Override
     public String search(K key) {
         if (search2(root, key) != null)
-            return "Item Found";
+            return key + " found";
         else
-            return "Not found";
+            return key + " not found";
     }
 
     private RBNode<K> search2(RBNode<K> root, K key) {
