@@ -118,7 +118,7 @@ public class AVLTree<K extends Comparable<K>> implements ITree<K> {
             return key + " added successfully";
         }
         if (currentNode.getKey().compareTo(key) == 0)
-            return key + " already exits";
+            return key + " already exists";
         else {
             size++;
             AVLNode<K> newNode = new AVLNode<K>(key, null, null, currentNode);
@@ -263,7 +263,7 @@ public class AVLTree<K extends Comparable<K>> implements ITree<K> {
 
     public String search(K value) {
         AVLNode<K> temp = root;
-        if (searchRecursion(temp, value).getKey().equals(value)) {
+        if (temp != null && searchRecursion(temp, value).getKey().equals(value)) {
             return value + " found";
         } else
             return value + " not found";

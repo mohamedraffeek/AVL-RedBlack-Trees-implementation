@@ -29,7 +29,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             node.setLeft(new RBNode<>(null, 'B', null, null, null));
             this.root = node;
             size++;
-            return "Inserted to empty tree";
+            return key + " added successfully " + node.color;
         }
 
         // n to find right place in the tree
@@ -40,10 +40,10 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             parent = current;
 
             if (current.getKey().compareTo(key) == 0) {
-                return "key already inserted";
-                
-            }else if(current.getKey().compareTo(key) < 0){
-                        current = current.getRight();
+                return key + " already exists";
+
+            } else if (current.getKey().compareTo(key) < 0) {
+                current = current.getRight();
             } else {
                 current = current.getLeft();
             }
@@ -69,7 +69,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
          * getting size is O(1)
          */
         size++;
-        return "Inserted Successfully " + node.color;
+        return key + " added successfully " + node.color;
 
     }
 
@@ -189,47 +189,50 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         }
 
         RBNode<K> node = this.search2(this.root, key);
-        if(node == null){
-            return "item not found";
+        if (node == null) {
+            return key + " not found";
         }
         deleteThis(node);
         size--;
-        return "Deleted Successfully";
+        return key + " deleted successfully";
     }
+
     private void changePosition(RBNode<K> u, RBNode<K> v) {
-        if(u.parent == null){
+        if (u.parent == null) {
             root = v;
-        }else if(u == u.parent.left){
+        } else if (u == u.parent.left) {
             u.parent.left = v;
-        }else{
+        } else {
             u.parent.right = v;
         }
         v.parent = u.parent;
     }
-    public RBNode<K> findSucc(RBNode<K> node){
-        while(node.left!= null && node.getLeft().key != null){
+
+    public RBNode<K> findSucc(RBNode<K> node) {
+        while (node.left != null && node.getLeft().key != null) {
             node = node.left;
         }
         return node;
     }
+
     void deleteThis(RBNode<K> node) {
-        RBNode<K> x,y;// = findSucc(v.left);
+        RBNode<K> x, y;// = findSucc(v.left);
         y = node;
         char deletedNodeColor = node.color;
-        if(node.left.key == null){//node has 1 right child
+        if (node.left.key == null) {
             x = node.right;
-            changePosition(node,x);
-        }else if(node.right.key == null){//node has 1 left child
+            changePosition(node, x);
+        } else if (node.right.key == null) {
             x = node.left;
-            changePosition(node,x);
-        }else{//node has 2 children
+            changePosition(node, x);
+        } else {// node has 2 children
             y = findSucc(node.right);
             deletedNodeColor = y.color;
             x = y.right;
-            if(node == y.parent){
+            if (node == y.parent) {
                 x.parent = y;
-            }else{
-                changePosition(y,x);
+            } else {
+                changePosition(y, x);
                 y.right = node.right;
                 y.right.parent = y;
             }
@@ -242,6 +245,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             fixDelete(x);
         }
     }
+
     private void fixDelete(RBNode<K> x) {
         RBNode<K> s;
         while (x != root && x.color == 'B') {
@@ -279,7 +283,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
                     s = x.parent.left;
                 }
 
-                if (s.right.color == 'B' && s.right.color == 'B') {
+                if (s.right.color == 'B' && s.left.color == 'B') {
                     s.color = 'R';
                     x = x.parent;
                 } else {
@@ -299,6 +303,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         }
         x.color = 'B';
     }
+
     // @Override
     public String search(K key) {
         if (search2(root, key) != null)
@@ -344,29 +349,18 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             return Math.max(leftHeight, rightHeight) + 1;
         }
     }
-<<<<<<< Updated upstream
 
     public void printInorder(RBNode<K> node) {
-        if (node == null || node.isNull())
-=======
-    public void printInorder(RBNode<K> node) {
         if (node == null || node.getKey() == null)
->>>>>>> Stashed changes
             return;
         printInorder(node.getLeft());
         if (node == root)
             System.out.print("*");
-<<<<<<< Updated upstream
         System.out.print(node.getKey() + " " + node.getColor() + " ");
         printInorder(node.getRight());
     }
 
     // overload
-=======
-        System.out.print(node.getKey() +" " + node.getColor() + " ");
-        printInorder(node.getRight());
-    }
->>>>>>> Stashed changes
     public void printInorder() {
         if (size == 0) {
             System.out.println("Empty tree");
@@ -374,8 +368,4 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         printInorder(root);
         System.out.println();
     }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes
