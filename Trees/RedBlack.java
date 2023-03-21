@@ -279,7 +279,7 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
                     s = x.parent.left;
                 }
 
-                if (s.right.color == 'B' && s.right.color == 'B') {
+                if (s.right.color == 'B' && s.left.color == 'B') {
                     s.color = 'R';
                     x = x.parent;
                 } else {
@@ -344,29 +344,17 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
             return Math.max(leftHeight, rightHeight) + 1;
         }
     }
-<<<<<<< Updated upstream
-
-    public void printInorder(RBNode<K> node) {
-        if (node == null || node.isNull())
-=======
     public void printInorder(RBNode<K> node) {
         if (node == null || node.getKey() == null)
->>>>>>> Stashed changes
             return;
         printInorder(node.getLeft());
         if (node == root)
             System.out.print("*");
-<<<<<<< Updated upstream
         System.out.print(node.getKey() + " " + node.getColor() + " ");
         printInorder(node.getRight());
     }
 
     // overload
-=======
-        System.out.print(node.getKey() +" " + node.getColor() + " ");
-        printInorder(node.getRight());
-    }
->>>>>>> Stashed changes
     public void printInorder() {
         if (size == 0) {
             System.out.println("Empty tree");
@@ -374,8 +362,5 @@ public class RedBlack<K extends Comparable<K>> implements ITree<K> {
         printInorder(root);
         System.out.println();
     }
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes
+

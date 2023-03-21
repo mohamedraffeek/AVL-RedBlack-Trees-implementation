@@ -6,8 +6,6 @@ public class Main {
   
   public static final String ANSI_RESET = "\u001B[0m", BLACK = "\u001B[30m", RED = "\u001B[31m", GREEN = "\u001B[32m", YELLOW = "\u001B[33m", BLUE = "\u001B[34m", PURPLE = "\u001B[35m", CYAN = "\u001B[36m";
   public static void main(String[] args) {
-<<<<<<< Updated upstream
-
     util.clearScreen();
 
     Dictionary d = null;
@@ -122,7 +120,6 @@ public class Main {
     // System.out.println(rb.search("z"));
     // System.out.println(rb.search("a"));
     // rb.printInorder();
-=======
     RedBlack<Integer> rb = new RedBlack<Integer>();
     System.out.println(rb.insert(10));
     System.out.println(rb.insert(15));
@@ -159,7 +156,6 @@ public class Main {
     //System.out.println(rb.search(200));
     //System.out.println(rb.search(39));
     rb.printInorder();
->>>>>>> Stashed changes
     // System.out.println(rb.getHeight());
     // System.out.println(rb.search(rb.root, 10));
     // get height
